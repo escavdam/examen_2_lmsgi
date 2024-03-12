@@ -1,0 +1,12 @@
+body{
+  background:black;
+  color: white;
+  height: 70vw;
+  width: 30vw;
+  justify-content: space-around;
+  border-radius: 1em;
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
