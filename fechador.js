@@ -20,6 +20,7 @@ async function qrCodeGenerator() {
 }
 
 
+
 async function crearCartaDeAnimal() {
     const wantedAnimal = await animalChooser()
     console.log(wantedAnimal)
