@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    font-size: 16px;
+    font-family: system-ui;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+#animal-info {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background: black;
+    color: white;
+    width: 20vw;
+    height: 38vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
+    container-type: inline-size;
+    padding: 1rem;
+}
+
+#animal-info img {
+    max-width: 100%;
+    height: auto;
+}
+#QR{
+    position:absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+#animal-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#animal-info ul li {
+    margin-bottom: 5px;
+}
