@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 16px;
+    font-family: system-ui;
+}
+
+.flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagen{
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+#imagenQR{
+    margin: 50px;
+    width: 100px;
+    height: 100px;
+}
+section{
+    width: 40%;
+    height: 50%;
+    border-radius: 30px;
+    background: whitesmoke;
+    margin: auto;
+    margin-top: 200px;
+    align-items: center;
+}
