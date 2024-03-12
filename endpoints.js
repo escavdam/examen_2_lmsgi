@@ -9,6 +9,11 @@ const vacunasAnimal = document.querySelector("#vacunas")
 const esterelizadoAnimal = document.querySelector("#esterelizado")
 const qrAnimal = document.querySelector("#qr")
 
+function formatoDeLaFecha(fecha) {
+    const opciones = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(fecha).toLocaleDateString('es-ES', opciones);
+}
+
 async function getAnimales(){
     const url = `https://piticli.glitch.me/animales`
     const respuesta = await fetch(url);
@@ -39,11 +44,11 @@ async function llamarDatosAnimales(){
     uiidAnimal.innerHTML = `
     ${uiid}`
     fechaNacimientoAnimak.innerHTML = `
-    <p>Fecha De Nacimiento: ${nacimiento}</p>`
+    <p>Fecha De Nacimiento: ${formatoDeLaFecha(nacimiento)}</p>`
     fotoAnimal.innerHTML = `
     <img src="${foto}" alt="${foto} width="300" height="300">`
     proximaVisitaDelAnimal.innerHTML = `
-    <p>Proxima Visita: ${proximaVisita}</p>`
+    <p>Proxima Visita: ${formatoDeLaFecha(proximaVisita)}</p>`
     esterelizadoAnimal.innerHTML = `
     ${esesterelizado}`
     qrAnimal.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${uiid}"/>`
