@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetica Animal</title>
+    <style>
+@font-face {
+    font-family: 'Animales';
+    src: url('Ladaku Hitam.otf'); 
+}
+@font-face {
+    font-family: 'Animales2';
+    src: url('ADELIA.otf'); 
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffd1dc; 
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative; 
+    
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(255, 1, 255, 0.2);
+}
+
+.card img#imagen {
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card .info {
+    font-family: Animales;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    color: hotpink; 
+    flex-grow: 1;
+}
+
+.card .info .text-info {
+    flex-grow: 1;
+}
+
+.card .info h1 {
+    font-family: Animales2;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card .info p {
+    font-size: 45px;
+    margin-bottom: 5px;
+}
+
+.card .info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card .info ul li {
+    font-size: 45px;
+}
+
+.card .info h2 {
+    font-family: Animales2;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.card img#qrCode {
+    max-width: 100px;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+    </style>
+</head>
+<body>
+    <div id="animalInfo" class="card">
+        <img id="imagen" alt="Imagen del animal">
+        <div class="info">
+            <div class="text-info">
+                <h1 id="nombre"></h1>
+                <p id="uuid"></p>
+                <h2>Fecha nacimiento:</h2>
+                <p id="fechaNacimiento"></p>
+                <h2>Proxima Visita:</h2>
+                <p id="proximaVisita"></p>
+                <h2>Personalidad:</h2>
+                <ul id="personalidad"></ul>
+                <h2>Vacunas:</h2>
+                <ul id="vacunas"></ul>
+            </div>
+            <img id="qrCode" alt="QR Code">
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    fetchAnimalData();
+});
+
+function fetchAnimalData() {
+    const xhr = new XMLHttpRequest();
+    const url = "https://piticli.glitch.me/animales/random";
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const animalData = JSON.parse(xhr.responseText);
+                displayAnimalData(animalData);
+            } else {
+                console.error("Error fetching animal data:", xhr.statusText);
+            }
+        }
+    };
+
+    xhr.open("GET", url);
+    xhr.send();
+}
+
+function displayAnimalData(animalData) {
+    document.getElementById("nombre").textContent = animalData.nombre;
+    document.getElementById("uuid").textContent = animalData.uuid;
+    document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?data=${animalData.uuid}`;
+    document.getElementById("fechaNacimiento").textContent = formatDate(animalData.fechaNacimiento);
+    document.getElementById("proximaVisita").textContent = formatDate(animalData.proximaVisita);
+
+    const personalidadList = document.getElementById("personalidad");
+    personalidadList.innerHTML = "";
+    animalData.personalidad.forEach(personalidad => {
+        const listItem = document.createElement("li");
+        listItem.textContent = personalidad;
+        personalidadList.appendChild(listItem);
+    });
+
+    const vacunasList = document.getElementById("vacunas");
+    vacunasList.innerHTML = "";
+    animalData.vacunas.forEach(vacuna => {
+        const listItem = document.createElement("li");
+        listItem.textContent = vacuna;
+        vacunasList.appendChild(listItem);
+    });
+
+    document.getElementById("imagen").src = animalData.imagen;
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().slice(-2); // Solo los últimos 2 dígitos del año
+    return `${day}/${month}/${year}`;
+}
+
+    </script>
+</body>
+</html>
