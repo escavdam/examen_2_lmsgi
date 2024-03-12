@@ -3,14 +3,9 @@ const randomAnimalEndpoint = '/animales/random';
 
 const fetchRandomAnimal = async () => {
     const response = await fetch(apiUrl + randomAnimalEndpoint);
-  
-    if (!response.ok) {
-      console.error('No se pudo obtener un animal aleatorio');
-      return null;
-    }
-  
     return await response.json();
-  };
+};
+
   
 
 const formatDate = (dateString) => {
