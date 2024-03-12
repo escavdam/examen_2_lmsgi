@@ -1,24 +1,26 @@
 #animal-info {
     display: flex;
-    flex-direction: column;
+    flex-direction:  row;
     align-items: center;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: burlywood;
+    border-radius: 9%;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   #animal-info h1 {
-    margin-top: 0;
-    font-size: 2rem;
+    font-size: 4rem;
+    display: flex;
+    margin-left: 30%;
     font-weight: bold;
-    color: #333;
+    color: black;
   }
   
   #animal-info p {
+    margin-left: 25%;
     margin-bottom: 10px;
     font-size: 1.2rem;
     color: #333;
@@ -31,9 +33,10 @@
   }
   
   #animal-info li {
+    margin-left: 25%;
     margin-bottom: 5px;
     font-size: 1rem;
-    color: #666;
+    color: black;
   }
   
   #animal-info img {
@@ -46,17 +49,9 @@
   }
   
   #animal-info .qr-code {
-    position: absolute;
-    bottom: 10px;
+    bottom: 100px;
     right: 10px;
     width: 50px;
     height: 50px; 
   }
   
-  #animal-info img:nth-child(2) { /* Target the second image (QR code) */
-    position: absolute;
-    top: 10px; /* Place it 10px from the top */
-    right: 10px; /* Place it 10px from the right */
-    width: 100px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
-  }
